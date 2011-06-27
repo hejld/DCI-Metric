@@ -107,15 +107,6 @@ public class DCIMetric {
         return dataCouplingIndex;
     }
 
-    public float getDCI2() {
-        float count = 0f;
-        for (ServiceInterface si : getServiceInterfaces()) {
-            count += si.getSharedComplexTypeMap().size();
-        }
-
-        return count / getServiceInterfaces().size();
-    }
-
     /**
      * @return NDCI value
      */

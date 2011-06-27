@@ -298,15 +298,15 @@
                 <soap:body use="literal"/>
             </output>
         </operation>
-        <!--<operation name="OTA_AirBookModify">-->
-        <!--<soap:operation soapAction="OTA_AirBookModify" style="document"/>-->
-        <!--<input>-->
-        <!--<soap:body use="literal"/>-->
-        <!--</input>-->
-        <!--<output>-->
-        <!--<soap:body use="literal"/>-->
-        <!--</output>-->
-        <!--</operation>-->
+        <operation name="OTA_AirBookModify">
+            <soap:operation soapAction="OTA_AirBookModify" style="document"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
         <operation name="OTA_AirCheckIn">
             <soap:operation soapAction="OTA_AirCheckIn" style="document"/>
             <input>
@@ -361,15 +361,15 @@
                 <soap:body use="literal"/>
             </output>
         </operation>
-        <!--<operation name="OTA_AirRules">-->
-        <!--<soap:operation soapAction="OTA_AirRules" style="document"/>-->
-        <!--<input>-->
-        <!--<soap:body use="literal"/>-->
-        <!--</input>-->
-        <!--<output>-->
-        <!--<soap:body use="literal"/>-->
-        <!--</output>-->
-        <!--</operation>-->
+        <operation name="OTA_AirRules">
+            <soap:operation soapAction="OTA_AirRules" style="document"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
         <operation name="OTA_AirSchedule">
             <soap:operation soapAction="OTA_AirSchedule" style="document"/>
             <input>
