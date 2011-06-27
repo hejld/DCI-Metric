@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:ota="http://www.opentravel.org/OTA/2003/05"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             targetNamespace="http://www.opentravel.org/OTA/2003/05">
+
+    <documentation>Mock WSDL definition for OTA Air messages</documentation>
+    <types>
+        <xsd:schema>
+            <xsd:import schemaLocation="schemas/OTA_AirBookRS.xsd"
+                        namespace="http://www.opentravel.org/OTA/2003/05"/>
+        </xsd:schema>
+
+        <xsd:schema>
+            <xsd:import schemaLocation="schemas/OTA_AirDemandTicketRS.xsd"
+                        namespace="http://www.opentravel.org/OTA/2003/05"/>
+        </xsd:schema>
+
+        <xsd:schema>
+            <xsd:import schemaLocation="schemas/OTA_AirBookModifyRQ.xsd"
+                        namespace="http://www.opentravel.org/OTA/2003/05"/>
+        </xsd:schema>
+
+        <xsd:schema>
+            <xsd:import schemaLocation="schemas/OTA_AirAvailRQ.xsd"
+                        namespace="http://www.opentravel.org/OTA/2003/05"/>
+        </xsd:schema>
+
+        <xsd:schema>
+            <xsd:import schemaLocation="schemas/OTA_AirDetailsRQ.xsd"
+                        namespace="http://www.opentravel.org/OTA/2003/05"/>
+        </xsd:schema>
+
+        <xsd:schema>
+            <xsd:import schemaLocation="schemas/OTA_AirCheckInRS.xsd"
+                        namespace="http://www.opentravel.org/OTA/2003/05"/>
+        </xsd:schema>
+
+        <xsd:schema>
+            <xsd:import schemaLocation="schemas/OTA_AirScheduleRQ.xsd"
+                        namespace="http://www.opentravel.org/OTA/2003/05"/>
+        </xsd:schema>
+
+        <xsd:schema>
+            <xsd:import schemaLocation="schemas/OTA_AirCheckInRQ.xsd"
+                        namespace="http://www.opentravel.org/OTA/2003/05"/>
+        </xsd:schema>
+
+        <xsd:schema>
+            <xsd:import schemaLocation="schemas/OTA_AirScheduleRS.xsd"
+                        namespace="http://www.opentravel.org/OTA/2003/05"/>
+        </xsd:schema>
+
+        <xsd:schema>
+            <xsd:import schemaLocation="schemas/OTA_AirDemandTicketRQ.xsd"
+                        namespace="http://www.opentravel.org/OTA/2003/05"/>
+        </xsd:schema>
+
+        <xsd:schema>
+            <xsd:import schemaLocation="schemas/OTA_AirBookRQ.xsd"
+                        namespace="http://www.opentravel.org/OTA/2003/05"/>
+        </xsd:schema>
+
+        <xsd:schema>
+            <xsd:import schemaLocation="schemas/OTA_AirSeatMapRQ.xsd"
+                        namespace="http://www.opentravel.org/OTA/2003/05"/>
+        </xsd:schema>
+
+        <xsd:schema>
+            <xsd:import schemaLocation="updated-schemas/OTA_AirFlifoRS.xsd"
+                        namespace="http://www.opentravel.org/OTA/2003/05"/>
+        </xsd:schema>
+
+        <xsd:schema>
+            <xsd:import schemaLocation="schemas/OTA_AirFareDisplayRQ.xsd"
+                        namespace="http://www.opentravel.org/OTA/2003/05"/>
+        </xsd:schema>
+
+        <xsd:schema>
+            <xsd:import schemaLocation="schemas/OTA_AirSeatMapRS.xsd"
+                        namespace="http://www.opentravel.org/OTA/2003/05"/>
+        </xsd:schema>
+
+        <xsd:schema>
+            <xsd:import schemaLocation="schemas/OTA_AirFlifoRQ.xsd"
+                        namespace="http://www.opentravel.org/OTA/2003/05"/>
+        </xsd:schema>
+
+        <xsd:schema>
+            <xsd:import schemaLocation="schemas/OTA_AirLowFareSearchRS.xsd"
+                        namespace="http://www.opentravel.org/OTA/2003/05"/>
+        </xsd:schema>
+
+        <xsd:schema>
+            <xsd:import schemaLocation="schemas/OTA_AirAvailRS.xsd"
+                        namespace="http://www.opentravel.org/OTA/2003/05"/>
+        </xsd:schema>
+
+        <xsd:schema>
+            <xsd:import schemaLocation="updated-schemas/OTA_AirDetailsRS.xsd"
+                        namespace="http://www.opentravel.org/OTA/2003/05"/>
+        </xsd:schema>
+
+        <xsd:schema>
+            <xsd:import schemaLocation="schemas/OTA_AirPriceRS.xsd"
+                        namespace="http://www.opentravel.org/OTA/2003/05"/>
+        </xsd:schema>
+
+        <xsd:schema>
+            <xsd:import schemaLocation="schemas/OTA_AirFareDisplayRS.xsd"
+                        namespace="http://www.opentravel.org/OTA/2003/05"/>
+        </xsd:schema>
+
+        <xsd:schema>
+            <xsd:import schemaLocation="schemas/OTA_AirLowFareSearchRQ.xsd"
+                        namespace="http://www.opentravel.org/OTA/2003/05"/>
+        </xsd:schema>
+
+        <xsd:schema>
+            <xsd:import schemaLocation="schemas/OTA_AirDisplayQueueRS.xsd"
+                        namespace="http://www.opentravel.org/OTA/2003/05"/>
+        </xsd:schema>
+
+        <xsd:schema>
+            <xsd:import schemaLocation="schemas/OTA_AirPriceRQ.xsd"
+                        namespace="http://www.opentravel.org/OTA/2003/05"/>
+        </xsd:schema>
+
+        <xsd:schema>
+            <xsd:import schemaLocation="schemas/OTA_AirRulesRQ.xsd"
+                        namespace="http://www.opentravel.org/OTA/2003/05"/>
+        </xsd:schema>
+
+        <xsd:schema>
+            <xsd:import schemaLocation="schemas/OTA_AirRulesRS.xsd"
+                        namespace="http://www.opentravel.org/OTA/2003/05"/>
+        </xsd:schema>
+    </types>
+
+    <!-- Message definitions -->
+    <message name="OTA_AirAvailRQ">
+        <part name="messagePart" element="ota:OTA_AirAvailRQ"/>
+    </message>
+    <message name="OTA_AirAvailRS">
+        <part name="messagePart" element="ota:OTA_AirAvailRS"/>
+    </message>
+    <message name="OTA_AirBookRQ">
+        <part name="messagePart" element="ota:OTA_AirBookRQ"/>
+    </message>
+    <message name="OTA_AirBookRS">
+        <part name="messagePart" element="ota:OTA_AirBookRS"/>
+    </message>
+    <message name="OTA_AirBookModifyRQ">
+        <part name="messagePart" element="ota:OTA_AirBookModifyRQ"/>
+    </message>
+    <!--<message name="OTA_AirBookModifyRS">-->
+        <!--<part name="messagePart" element="ota:OTA_AirBookModifyRS"/>-->
+    <!--</message>-->
+    <message name="OTA_AirCheckInRQ">
+        <part name="messagePart" element="ota:OTA_AirCheckInRQ"/>
+    </message>
+    <message name="OTA_AirCheckInRS">
+        <part name="messagePart" element="ota:OTA_AirCheckInRS"/>
+    </message>
+    <message name="OTA_AirDemandTicketRQ">
+        <part name="messagePart" element="ota:OTA_AirDemandTicketRQ"/>
+    </message>
+    <message name="OTA_AirDemandTicketRS">
+        <part name="messagePart" element="ota:OTA_AirDemandTicketRS"/>
+    </message>
+    <message name="OTA_AirDetailsRQ">
+        <part name="messagePart" element="ota:OTA_AirDetailsRQ"/>
+    </message>
+    <message name="OTA_AirDetailsRS">
+        <part name="messagePart" element="ota:OTA_AirDetailsRS"/>
+    </message>
+    <message name="OTA_AirFareDisplayRQ">
+        <part name="messagePart" element="ota:OTA_AirFareDisplayRQ"/>
+    </message>
+    <message name="OTA_AirFareDisplayRS">
+        <part name="messagePart" element="ota:OTA_AirFareDisplayRS"/>
+    </message>
+    <message name="OTA_AirFlifoRQ">
+        <part name="messagePart" element="ota:OTA_AirFlifoRQ"/>
+    </message>
+    <message name="OTA_AirFlifoRS">
+        <part name="messagePart" element="ota:OTA_AirFlifoRS"/>
+    </message>
+    <message name="OTA_AirPriceRQ">
+        <part name="messagePart" element="ota:OTA_AirPriceRQ"/>
+    </message>
+    <message name="OTA_AirPriceRS">
+        <part name="messagePart" element="ota:OTA_AirPriceRS"/>
+    </message>
+    <message name="OTA_AirRulesRQ">
+        <part name="messagePart" element="ota:OTA_AirRulesRQ"/>
+    </message>
+    <message name="OTA_AirRulesRS">
+        <part name="messagePart" element="ota:OTA_AirRulesRS"/>
+    </message>
+    <message name="OTA_AirScheduleRQ">
+        <part name="messagePart" element="ota:OTA_AirScheduleRQ"/>
+    </message>
+    <message name="OTA_AirScheduleRS">
+        <part name="messagePart" element="ota:OTA_AirScheduleRS"/>
+    </message>
+    <message name="OTA_AirSeatMapRQ">
+        <part name="messagePart" element="ota:OTA_AirSeatMapRQ"/>
+    </message>
+    <message name="OTA_AirSeatMapRS">
+        <part name="messagePart" element="ota:OTA_AirSeatMapRS"/>
+    </message>
+
+
+    <portType name="MockServicePortType">
+        <documentation>Mock Service Interface with all the operations</documentation>
+
+        <operation name="OTA_AirAvail">
+            <input message="ota:OTA_AirAvailRQ"/>
+            <output message="ota:OTA_AirAvailRS"/>
+        </operation>
+
+        <operation name="OTA_AirBook">
+            <input message="ota:OTA_AirBookRQ"/>
+            <output message="ota:OTA_AirBookRS"/>
+        </operation>
+
+        <operation name="OTA_AirBookModify">
+            <input message="ota:OTA_AirBookModifyRQ"/>
+            <output message="ota:OTA_AirBookModifyRQ"/>
+        </operation>
+
+        <operation name="OTA_AirCheckIn">
+            <input message="ota:OTA_AirCheckInRQ"/>
+            <output message="ota:OTA_AirCheckInRS"/>
+        </operation>
+
+        <operation name="OTA_AirDemandTicket">
+            <input message="ota:OTA_AirDemandTicketRQ"/>
+            <output message="ota:OTA_AirDemandTicketRS"/>
+        </operation>
+
+        <operation name="OTA_AirDetails">
+            <input message="ota:OTA_AirDetailsRQ"/>
+            <output message="ota:OTA_AirDetailsRS"/>
+        </operation>
+
+        <operation name="OTA_AirFareDisplay">
+            <input message="ota:OTA_AirFareDisplayRQ"/>
+            <output message="ota:OTA_AirFareDisplayRS"/>
+        </operation>
+
+        <operation name="OTA_AirFlifo">
+            <input message="ota:OTA_AirFlifoRQ"/>
+            <output message="ota:OTA_AirFlifoRS"/>
+        </operation>
+
+        <operation name="OTA_AirPrice">
+            <input message="ota:OTA_AirPriceRQ"/>
+            <output message="ota:OTA_AirPriceRS"/>
+        </operation>
+
+        <operation name="OTA_AirRules">
+            <input message="OTA_AirRulesRQ"/>
+            <output message="OTA_AirRulesRS"/>
+        </operation>
+
+        <operation name="OTA_AirSchedule">
+            <input message="ota:OTA_AirScheduleRQ"/>
+            <output message="ota:OTA_AirScheduleRQ"/>
+        </operation>
+
+        <operation name="OTA_AirSeatMap">
+            <input message="ota:OTA_AirSeatMapRQ"/>
+            <output message="ota:OTA_AirSeatMapRS"/>
+        </operation>
+    </portType>
+
+    <binding name="MockOTAAirServiceInterface" type="ota:MockServicePortType">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <operation name="OTA_AirAvail">
+            <soap:operation soapAction="OTA_AirAvail" style="document"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+
+        <operation name="OTA_AirBook">
+            <soap:operation soapAction="OTA_AirBook" style="document"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <!--<operation name="OTA_AirBookModify">-->
+        <!--<soap:operation soapAction="OTA_AirBookModify" style="document"/>-->
+        <!--<input>-->
+        <!--<soap:body use="literal"/>-->
+        <!--</input>-->
+        <!--<output>-->
+        <!--<soap:body use="literal"/>-->
+        <!--</output>-->
+        <!--</operation>-->
+        <operation name="OTA_AirCheckIn">
+            <soap:operation soapAction="OTA_AirCheckIn" style="document"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="OTA_AirDemandTicket">
+            <soap:operation soapAction="OTA_AirDemandTicket" style="document"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="OTA_AirDetails">
+            <soap:operation soapAction="OTA_AirDetails" style="document"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="OTA_AirFareDisplay">
+            <soap:operation soapAction="OTA_AirFareDisplay" style="document"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="OTA_AirFlifo">
+            <soap:operation soapAction="OTA_AirFlifo" style="document"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="OTA_AirPrice">
+            <soap:operation soapAction="OTA_AirPrice" style="document"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <!--<operation name="OTA_AirRules">-->
+        <!--<soap:operation soapAction="OTA_AirRules" style="document"/>-->
+        <!--<input>-->
+        <!--<soap:body use="literal"/>-->
+        <!--</input>-->
+        <!--<output>-->
+        <!--<soap:body use="literal"/>-->
+        <!--</output>-->
+        <!--</operation>-->
+        <operation name="OTA_AirSchedule">
+            <soap:operation soapAction="OTA_AirSchedule" style="document"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="OTA_AirSeatMap">
+            <soap:operation soapAction="OTA_AirSeatMap" style="document"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="Blog">
+        <port name="Blog" binding="ota:MockOTAAirServiceInterface">
+        </port>
+    </service>
+</definitions>
