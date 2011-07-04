@@ -1,0 +1,28 @@
+<assembly>
+  <id>exe</id>
+  <formats>
+    <format>jar</format>
+  </formats>
+  <includeBaseDirectory>false</includeBaseDirectory>
+  <dependencySets>
+    <dependencySet>
+      <outputDirectory></outputDirectory>
+      <outputFileNameMapping></outputFileNameMapping>
+      <unpack>true</unpack>
+      <scope>runtime</scope>
+      <includes>
+        <include>org.ow2.easywsdl:easywsdl-wsdl</include>
+        <include>org.ow2.easywsdl:easywsdl-schema</include>
+        <include>org.jvnet.jaxb2_commons:runtime</include>
+        <include>commons-lang:commons-lang</include>
+        <include>com.sun.xml.bind:jaxb-impl</include>
+      </includes>
+    </dependencySet>
+  </dependencySets>
+  <fileSets>
+    <fileSet>
+      <directory>target/classes</directory>
+      <outputDirectory></outputDirectory>
+    </fileSet>
+  </fileSets>
+</assembly>

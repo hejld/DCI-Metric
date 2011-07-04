@@ -5,6 +5,7 @@ import cz.vse.metric.dci.ServiceInterface;
 import cz.vse.metric.dci.ServiceInterfaceCombination;
 
 import javax.xml.namespace.QName;
+import java.io.File;
 import java.net.SocketOptions;
 import java.util.Scanner;
 
@@ -22,28 +23,34 @@ public class ConsoleApplication {
 
     private void welcome() {
         System.out.println("Hello and welcome!");
+        System.out.println("This tool serves for automatic DCI metric computation. \n");
     }
 
 
     private void loadWsdl() {
         // Ask the user for specifying the location of the WSDL to load
         System.out.println("For evaluate the service design, please load the WSDL definition");
+        System.out.println("Insert the URI for your WSDL definition, use 'file:' prefix for local files");
 
-        while (true) {
-            // Get the definition
-            try {
-                dciMetric.loadWsdl(in.nextLine());
-                System.out.println("Do you want to load another WSDL file? Press 'y' to load.");
+        // Get the definition
+        try {
+            dciMetric.loadWsdl(in.nextLine());
 
-                if (!"y".equals(in.nextLine())) {
+            while (true) {
+                System.out.println("Insert URI for loading another WSDL or leave the line blank to continue");
+
+                if ("".equals(in.nextLine())) {
                     break;
                 }
-
-            } catch (Exception e) {
-                System.out.println(e);
-                System.out.println("Unfortunately, the WSDL was not loaded successfully, please recheck the url");
+                
+                dciMetric.loadWsdl(in.nextLine());
             }
+
+        } catch (Exception e) {
+            System.out.println(e);
+            System.out.println("Unfortunately, the WSDL was not loaded successfully, please insert the url again");
         }
+
     }
 
     private void printBasicReport() {
@@ -51,15 +58,13 @@ public class ConsoleApplication {
         System.out.println("---------------------------------");
         System.out.println("DCI  = " + dciMetric.getDataCouplingIndex());
         System.out.println("NDCI = " + dciMetric.getNormalizedDataCouplingIndex());
-        System.out.println("---------------------------------");
-        System.out.println("");
+        System.out.println("---------------------------------\n");
         System.out.println("Additional information:");
         System.out.println("Total number of service operations:            " + dciMetric.getServiceInterfaces().size());
         System.out.println("Total number of combinations (r):              " + dciMetric.getServiceInterfaceCombinations().size() / 2);
         System.out.println("");
         System.out.println("Average number of complex types per operation: " + dciMetric.getAverageNumberOfComplexElementsPerOperation());
         System.out.println("Number of complex types that were reused:      " + dciMetric.getComplexTypesWithUsageCounts().size());
-        System.out.println("");
     }
 
     private void processNextActions() {

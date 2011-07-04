@@ -268,7 +268,7 @@
 
         <operation name="OTA_AirSchedule">
             <input message="ota:OTA_AirScheduleRQ"/>
-            <output message="ota:OTA_AirScheduleRQ"/>
+            <output message="ota:OTA_AirScheduleRS"/>
         </operation>
 
         <operation name="OTA_AirSeatMap">

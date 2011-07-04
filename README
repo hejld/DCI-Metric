@@ -1,0 +1,18 @@
+This
+
+How to use it?
+
+Run the application from command line via standard java command:
+java -jar DCIMetric-exe.jar
+
+First, you will be asked to provide a URI to WSDL definition you want to analyze.
+This file can be located either on your local computer, or on the internet.
+
+For local WSDL file, use URI in following form (you can use both relative and
+absolute link):
+file:path/to/my/local/file.wsdl
+
+For remote WSDL file, use URI in following form:
+http://www.somedomain.com/file.wsdl
+
+You can load multiple WSDL definitions by 

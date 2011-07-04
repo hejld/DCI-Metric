@@ -21,8 +21,7 @@ import static org.junit.Assert.assertTrue;
  */
 public class BehaviourTest {
 
-//    public static String WSDL_URL = "http://ws.xwebservices.com/XWebBlog/V2/XWebBlog.wsdl";
-    public static String WSDL_URL = "file:/Users/daniel/Dropbox/_Bakalarka/DCIMetric/src/main/resources/OTA.wsdl";
+    public static String WSDL_URL = "http://ws.xwebservices.com/XWebBlog/V2/XWebBlog.wsdl";
 
     /**
      * Based on WSDL file provided, the application should be able
