@@ -1,18 +1,36 @@
-This
+Tool for measuring DCI metric
 
 How to use it?
 
 Run the application from command line via standard java command:
 java -jar DCIMetric-exe.jar
 
-First, you will be asked to provide a URI to WSDL definition you want to analyze.
-This file can be located either on your local computer, or on the internet.
+First, you will be asked to provide a URI to WSDL definition you want to analyze. This file can be located either on your local computer, or on the internet.
 
-For local WSDL file, use URI in following form (you can use both relative and
-absolute link):
+For local WSDL file, use URI in following form (you can use both relative and absolute links):
 file:path/to/my/local/file.wsdl
 
 For remote WSDL file, use URI in following form:
 http://www.somedomain.com/file.wsdl
 
-You can load multiple WSDL definitions by 
+After loading the WSDL, you will be asked for inserting another URI to load next WSDL. If you do not want to load any other WSDL, you can proceed to the calculation by inserting blank line.
+
+Next, the DCI metric is calculated and following values are provided:
+
+---------------------------------
+DCI  = x.xxx
+NDCI = x.xxx
+---------------------------------
+
+Additional information:
+Total number of service operations:            xx
+Total number of combinations (r):              xx
+
+Average number of complex types per operation: xx
+Number of complex types that were reused:      xx
+
+For more detailed analysis, you can use additional options as described in program output. You can press q and enter to exit the program.
+
+You can press 1 and enter for detailed analysis of operation interfaces.
+You can press 2 and enter for detailed analysis of complex types.
+You can press 3 and enter for detailed analysis of each operation interface combination.
