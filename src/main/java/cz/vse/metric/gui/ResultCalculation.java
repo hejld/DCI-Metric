@@ -29,7 +29,7 @@ class ResultCalculation extends SwingWorker<DCIMetric, Void> {
 			File localFile = new File((String) wsdl);
 			String URI;
 			if (localFile.exists()) {
-				URI = "file:" + wsdl;
+				URI = localFile.toURI().toString();
 			} else {
 				URI = (String)wsdl;
 			}
@@ -43,7 +43,7 @@ class ResultCalculation extends SwingWorker<DCIMetric, Void> {
 		try {
 			metric.loadWsdl(URI);
 		} catch (Exception ignored) {
-
+			JOptionPane.showMessageDialog(window, ignored.getMessage(), "Warning", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 

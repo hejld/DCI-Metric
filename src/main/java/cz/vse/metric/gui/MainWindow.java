@@ -32,7 +32,7 @@ public class MainWindow extends JFrame implements MouseListener {
 	private List<ResultsBrowser> resultBrowser;
 
 	public MainWindow() {
-		super();
+		super("DCI Metric Gui");
 		createGUI();
 	}
 

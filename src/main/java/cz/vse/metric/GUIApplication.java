@@ -3,8 +3,11 @@ package cz.vse.metric;
 import cz.vse.metric.dci.DCIMetric;
 import cz.vse.metric.gui.MainWindow;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
-import java.io.File;
+import java.awt.*;
+import java.io.IOException;
+import java.net.URL;
 
 /**
  * Created by IntelliJ IDEA.
@@ -19,6 +22,25 @@ public class GUIApplication implements UserInterface {
 	public GUIApplication() {
 		if (System.getProperty("os.name").startsWith("Mac OS X")) {
 			System.setProperty("com.apple.mrj.application.apple.menu.about.name", "DCI Metric");
+
+			URL iconURL = GUIApplication.class.getResource("gui/ico.png");
+
+			com.apple.eawt.Application macApp = com.apple.eawt.Application.getApplication();
+
+			try {
+				Image image = ImageIO.read(iconURL);
+				macApp.setDockIconImage(image);
+			} catch (IOException ioe) {
+				ioe.printStackTrace();
+			}
+		} else {
+			try {
+				UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+			} catch (ClassNotFoundException ignored) {
+			} catch (InstantiationException ignored) {
+			} catch (IllegalAccessException ignored) {
+			} catch (UnsupportedLookAndFeelException ignored) {
+			}
 		}
 		mainWindow = new MainWindow();
 	}
