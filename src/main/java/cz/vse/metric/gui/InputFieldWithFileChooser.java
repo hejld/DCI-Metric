@@ -72,7 +72,9 @@ class InputFieldWithFileChooser extends JPanel implements MouseListener, Filenam
 	public void mouseClicked(MouseEvent mouseEvent) {
 		if (mouseEvent.getSource() == fileChooserButton) {
 			fileDialog.setVisible(true);
-			setText(fileDialog.getDirectory() + fileDialog.getFile());
+			if (fileDialog.getFile() != null) {
+				setText(fileDialog.getDirectory() + fileDialog.getFile());
+			}
 		}
 	}
 
