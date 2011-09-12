@@ -10,11 +10,10 @@ import java.text.DecimalFormat;
 
 /**
  * Created by IntelliJ IDEA.
- * User: djaara
- * Date: 2011-09-11
- * Time: 15:16
+ * @author <a href="mailto:djaara83@gmail.com">Jaroslav Barton</a>
+ * Date: 2011-09-11 15:16
  */
-public class BasicResults extends JPanel implements ResultsBrowser {
+public class BasicResultsPanel extends JPanel implements ResultsBrowser {
 
 	private JLabel DCI;
 	private JLabel NDCI;
@@ -23,7 +22,10 @@ public class BasicResults extends JPanel implements ResultsBrowser {
 	private JLabel averageNumberOfComplexTypesPerOperation;
 	private JLabel numberOfComplexTypesThatWereReused;
 
-	public BasicResults() {
+	/**
+	 * Basic Results Panel constructor
+	 */
+	public BasicResultsPanel() {
 		init();
 
 		FormLayout layout = new FormLayout("l:p:g, 3dlu, r:p:g",
@@ -44,6 +46,9 @@ public class BasicResults extends JPanel implements ResultsBrowser {
 		pb.addLabel("Number of complex types that were reused", cc.xy(1, 15), numberOfComplexTypesThatWereReused, lcc.xy(3, 15));
 	}
 
+	/**
+	 * Initialize GUI components
+	 */
 	private void init() {
 		DCI = new JLabel();
 		NDCI = new JLabel();
@@ -53,18 +58,36 @@ public class BasicResults extends JPanel implements ResultsBrowser {
 		numberOfComplexTypesThatWereReused = new JLabel();
 	}
 
+	/**
+	 * Set result and updates GUI
+	 * @param result result
+	 */
 	public void setResult(final DCIMetric result) {
-		DecimalFormat fformatter = new DecimalFormat("#.##");
-		DecimalFormat iformatter = new DecimalFormat("#");
+		DecimalFormat fformatter = new DecimalFormat("#,###.##");
+		DecimalFormat iformatter = new DecimalFormat("#,###");
 
-		DCI.setText(fformatter.format(result.getDataCouplingIndex()));
-		NDCI.setText(fformatter.format(result.getNormalizedDataCouplingIndex()));
+		/* set DCI only when is not NaN */
+		if (!Float.valueOf(result.getDataCouplingIndex()).isNaN()) {
+			DCI.setText(fformatter.format(result.getDataCouplingIndex()));
+		}
+
+		/* set NDCI only when is not NaN */
+		if (!Float.valueOf(result.getNormalizedDataCouplingIndex()).isNaN()) {
+			NDCI.setText(fformatter.format(result.getNormalizedDataCouplingIndex()));
+		}
+		
 		numberOfServiceOperations.setText(iformatter.format(result.getServiceInterfaces().size()));
 		numberOfServiceCombinations.setText(iformatter.format(result.getServiceInterfaceCombinations().size()/2));
-		averageNumberOfComplexTypesPerOperation.setText(fformatter.format(result.getAverageNumberOfComplexElementsPerOperation()));
+		/* set average number of complex types per operation only when is not NaN */
+		if (!Float.valueOf(result.getAverageNumberOfComplexElementsPerOperation()).isNaN()) {
+			averageNumberOfComplexTypesPerOperation.setText(fformatter.format(result.getAverageNumberOfComplexElementsPerOperation()));
+		}
 		numberOfComplexTypesThatWereReused.setText(iformatter.format(result.getComplexTypesWithUsageCounts().size()));
 	}
 
+	/**
+	 * Clear results
+	 */
 	public void reset() {
 		DCI.setText(null);
 		NDCI.setText(null);

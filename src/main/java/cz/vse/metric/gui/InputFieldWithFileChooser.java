@@ -10,9 +10,8 @@ import java.net.URL;
 
 /**
  * Created by IntelliJ IDEA.
- * User: djaara
- * Date: 2011-09-11
- * Time: 24:02
+ * @author <a href="mailto:djaara83@gmail.com">Jaroslav Barton</a>
+ * Date: 2011-09-11 24:02
  */
 class InputFieldWithFileChooser extends JPanel implements MouseListener, FilenameFilter {
 
@@ -21,6 +20,10 @@ class InputFieldWithFileChooser extends JPanel implements MouseListener, Filenam
 	private FileDialog fileDialog;
 	private final Frame owner;
 
+	/**
+	 * Combined text field with button that opens file dialog.
+	 * @param owner file dialog owner
+	 */
 	public InputFieldWithFileChooser(Frame owner) {
 		this.owner = owner;
 		init();
@@ -29,6 +32,9 @@ class InputFieldWithFileChooser extends JPanel implements MouseListener, Filenam
 		add(fileChooserButton, BorderLayout.EAST);
 	}
 
+	/**
+	 * Initialize GUI components
+	 */
 	private void init() {
 		LookAndFeel.installBorder(this, "TextField.border");
 		fileDialog = new FileDialog(owner);
@@ -53,6 +59,11 @@ class InputFieldWithFileChooser extends JPanel implements MouseListener, Filenam
 		setBackground(textField.getBackground());
 	}
 
+	/**
+	 * Loads button icon from file
+	 * @param height icon size - height x height
+	 * @return loaded icon
+	 */
 	private ImageIcon getFolderIcon(int height) {
 		URL iconURL = InputFieldWithFileChooser.class.getResource("folder.png");
 		ImageIcon icon = new ImageIcon(iconURL);
@@ -61,18 +72,33 @@ class InputFieldWithFileChooser extends JPanel implements MouseListener, Filenam
 		return new ImageIcon(image);
 	}
 
+	/**
+	 * Returns text field text
+	 * @return String
+	 */
 	public String getText() {
 		return textField.getText();
 	}
 
+	/**
+	 * Set input field text
+	 * @param text new input field content
+	 */
 	public void setText(String text) {
 		textField.setText(text);
 	}
 
+	/**
+	 * Mouse listener
+	 * @param mouseEvent mouse event
+	 */
 	public void mouseClicked(MouseEvent mouseEvent) {
+		/* handle fileChooserButton event */
 		if (mouseEvent.getSource() == fileChooserButton) {
+			/* show file dialog */
 			fileDialog.setVisible(true);
 			if (fileDialog.getFile() != null) {
+				/* get selected file */
 				setText(fileDialog.getDirectory() + fileDialog.getFile());
 			}
 		}
@@ -86,6 +112,12 @@ class InputFieldWithFileChooser extends JPanel implements MouseListener, Filenam
 
 	public void mouseExited(MouseEvent mouseEvent) {}
 
+	/**
+	 * Check file extension. Accepts only .wsdl
+	 * @param file directory
+	 * @param s filename
+	 * @return true if filename ends with .wsdl, otherwise false
+	 */
 	public boolean accept(File file, String s) {
 		return s.endsWith(".wsdl");
 	}

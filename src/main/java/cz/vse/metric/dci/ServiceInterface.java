@@ -55,7 +55,7 @@ public class ServiceInterface {
 
             Type type = element.getType();
 
-            // we are interested only in ComplexTypes
+            // we are interested only in ComplexTypesPanel
             if (type instanceof ComplexType) {
                 ComplexType complexType = (ComplexType) type;
 
@@ -66,7 +66,7 @@ public class ServiceInterface {
 
                     numberOfComplexTypes++;
 
-                    // We are not interested in anonymous ComplexTypes, as they
+                    // We are not interested in anonymous ComplexTypesPanel, as they
                     // cannot be reused anywhere else
                     if (complexType.getQName() != null) {
                         nonAnonymousComplexTypes.add(type.getQName());

@@ -1,67 +1,77 @@
 package cz.vse.metric.gui;
 
-import com.jgoodies.forms.builder.PanelBuilder;
-import com.jgoodies.forms.layout.CellConstraints;
-import com.jgoodies.forms.layout.FormLayout;
+import cz.vse.metric.dci.DCIMetric;
 import cz.vse.metric.dci.ServiceInterfaceCombination;
 
-import javax.swing.*;
-import javax.xml.namespace.QName;
-import java.text.DecimalFormat;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.BoxLayout;
+import javax.swing.SwingUtilities;
+import javax.swing.JLabel;
 import java.util.List;
+import java.awt.*;
 
 /**
  * Created by IntelliJ IDEA.
- * User: djaara
- * Date: 2011-09-11
- * Time: 16:06
+ * @author <a href="mailto:djaara83@gmail.com">Jaroslav Barton</a>
+ * Date: 2011-09-11 15:55
  */
-class OperationCombinationsPanel extends JPanel {
+public class OperationCombinationsPanel extends JPanel implements ResultsBrowser {
 
-	private JLabel combination;
-	private JLabel sharedElementsLabel;
-	private JTextArea sharedElementsArea;
-	private final ServiceInterfaceCombination sic;
-	private static final DecimalFormat iformatter = new DecimalFormat("#");
+	private JPanel OCPanels;
+	private JScrollPane sp;
 
-	public OperationCombinationsPanel(ServiceInterfaceCombination sic) {
-		this.sic = sic;
+	/**
+	 * Operation Combinations Panel constructor
+	 */
+	public OperationCombinationsPanel() {
 		init();
-
-		FormLayout layout = new FormLayout("l:110dlu, 3dlu, l:200dlu:g",
-				"t:p, 3dlu, t:p, 3dlu, p, 3dlu, p");
-		PanelBuilder pb = new PanelBuilder(layout, this);
-		pb.setDefaultDialogBorder();
-
-		CellConstraints cc = new CellConstraints();
-		CellConstraints lcc = new CellConstraints();
-		pb.addLabel("<html><b>Combination</b></html>", cc.xy(1, 1), combination, lcc.xy(3, 1));
-		pb.addLabel("Shared elements", cc.xy(1, 3), sharedElementsLabel, lcc.xy(3, 3));
-		pb.add(sharedElementsArea, cc.xy(3, 5));
-		pb.addSeparator("", cc.xyw(1, 7, 3));
 	}
 
+	/**
+	 * Initialize GUI components
+	 */
 	private void init() {
-		setOpaque(false);
-		combination = new JLabel();
-		sharedElementsLabel = new JLabel();
-		sharedElementsArea = new JTextArea();
-		sharedElementsArea.setOpaque(false);
-		sharedElementsArea.setBorder(null);
-
-		combination.setText(sic.getInterfaceA().getServiceQName().getLocalPart() + " vs " + sic.getInterfaceB().getServiceQName().getLocalPart());
-		sharedElementsLabel.setText(iformatter.format(sic.getNumberOfSharedElements()));
-		sharedElementsArea.setText(getSharedElements(sic.getSharedElements()));
+		setLayout(new BorderLayout());
+		OCPanels = new JPanel();
+		OCPanels.setLayout(new BoxLayout(OCPanels, BoxLayout.PAGE_AXIS));
+		sp = new JScrollPane(OCPanels);
+		sp.setOpaque(false);
+		sp.getViewport().setOpaque(false);
+		sp.setBorder(null);
+		add(sp);
 	}
 
-	private String getSharedElements(List<QName> complexTypes) {
-		StringBuilder sb = new StringBuilder();
-		for (QName complexType : complexTypes) {
-			if (sb.length() > 0) {
-				sb.append("\n");
-			}
-			sb.append(complexType.getLocalPart());
+	/**
+	 * Set result and update GUI
+	 * @param result result
+	 */
+	public void setResult(DCIMetric result) {
+		/* remove all old results */
+		OCPanels.removeAll();
+
+		/* Operation Combinations overview */
+		List<ServiceInterfaceCombination> sicl = result.getServiceInterfaceCombinations();
+		JPanel infoPanel = new JPanel();
+		infoPanel.add(new JLabel("<html><b>Operation interface combinations (total: " + sicl.size() + " combinations)</b></html>"));
+		OCPanels.add(infoPanel);
+
+		/* create panel for each combination */
+		for (ServiceInterfaceCombination sic : sicl) {
+			OCPanels.add(new OperationCombinationsDetailPanel(sic));
 		}
-		return sb.toString();
+		/* scroll sp to top */
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				sp.getViewport().setViewPosition(new Point(0, 0));
+			}
+		});
+	}
+
+	/**
+	 * Clear results
+	 */
+	public void reset() {
+		OCPanels.removeAll();
 	}
 }

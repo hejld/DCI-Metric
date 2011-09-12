@@ -22,7 +22,7 @@ class ServiceInterfacePanel extends JPanel {
 	private JLabel numberOfComplexTypes;
 	private JTextArea nonAnonymousComplexTypes;
 	private JLabel numOfShared;
-	private static final DecimalFormat iformatter = new DecimalFormat("#");
+	private static final DecimalFormat iformatter = new DecimalFormat("#,###");
 	private final ServiceInterface si;
 
 

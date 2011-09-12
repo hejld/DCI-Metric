@@ -1,53 +1,67 @@
 package cz.vse.metric.gui;
 
-import com.jgoodies.forms.builder.PanelBuilder;
-import com.jgoodies.forms.layout.CellConstraints;
-import com.jgoodies.forms.layout.FormLayout;
+import cz.vse.metric.dci.DCIMetric;
 
 import javax.swing.*;
 import javax.xml.namespace.QName;
-import java.text.DecimalFormat;
+import java.awt.*;
+import java.util.Map;
 
 /**
  * Created by IntelliJ IDEA.
- * User: djaara
- * Date: 2011-09-11
- * Time: 16:06
+ * @author <a href="mailto:djaara83@gmail.com">Jaroslav Barton</a>
+ * Date: 2011-09-11 15:55
  */
-class ComplexTypesPanel extends JPanel {
+public class ComplexTypesPanel extends JPanel implements ResultsBrowser {
 
-	private JLabel complexType;
-	private JLabel numberOfUsage;
-	private final DecimalFormat iformatter = new DecimalFormat("#");
-	private final QName name;
-	private final int count;
+	private JPanel CTPanels;
+	private JScrollPane sp;
 
-
-	public ComplexTypesPanel(QName name, int count) {
-		this.name = name;
-		this.count = count;
+	/**
+	 * Complex Types result browser panel constructor
+	 */
+	public ComplexTypesPanel() {
 		init();
-
-		FormLayout layout = new FormLayout("l:p, 3dlu, l:p:g",
-				"p, 3dlu, p, 3dlu, p");
-		PanelBuilder pb = new PanelBuilder(layout, this);
-		pb.setDefaultDialogBorder();
-
-		CellConstraints cc = new CellConstraints();
-		CellConstraints lcc = new CellConstraints();
-		pb.addLabel("<html><b>Complex type</b></html>", cc.xy(1, 1), complexType, lcc.xy(3, 1));
-		pb.addLabel("Number of distinct complex types", cc.xy(1, 3), numberOfUsage, lcc.xy(3, 3));
-		pb.addSeparator("", cc.xyw(1, 5, 3));
 	}
 
+	/**
+	 * Initialize GUI components
+	 */
 	private void init() {
-		setOpaque(false);
-		complexType = new JLabel();
-		
-		complexType = new JLabel();
-		numberOfUsage = new JLabel();
+		setLayout(new BorderLayout());
+		CTPanels = new JPanel();
+		CTPanels.setLayout(new BoxLayout(CTPanels, BoxLayout.PAGE_AXIS));
+		sp = new JScrollPane(CTPanels);
+		sp.setOpaque(false);
+		sp.getViewport().setOpaque(false);
+		sp.setBorder(null);
+		add(sp);
+	}
 
-		complexType.setText(name.toString());
-		numberOfUsage.setText(iformatter.format(count));
+	/**
+	 * Set result and update GUI
+	 * @param result result
+	 */
+	public void setResult(DCIMetric result) {
+		/* remove all old result panels */
+		CTPanels.removeAll();
+		/* for each result create new panel */
+		Map<QName, Integer> map = result.getComplexTypesWithUsageCounts();
+		for(QName complexType : map.keySet()) {
+			CTPanels.add(new ComplexTypesDetailPanel(complexType, map.get(complexType)));
+		}
+		/* scroll SP to top */
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				sp.getViewport().setViewPosition(new Point(0, 0));
+			}
+		});
+	}
+
+	/**
+	 * Clear results
+	 */
+	public void reset() {
+		CTPanels.removeAll();
 	}
 }

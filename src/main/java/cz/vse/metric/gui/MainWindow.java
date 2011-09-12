@@ -8,16 +8,16 @@ import cz.vse.metric.dci.DCIMetric;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
+import java.awt.Cursor;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by IntelliJ IDEA.
- * User: djaara
- * Date: 2011-09-10
- * Time: 19:04
+ * Main Window of DCI Metric GUI
+ * @author <a href="mailto:djaara83@gmail.com">Jaroslav Barton</a>
+ * Date: 2011-09-10 19:04
  */
 public class MainWindow extends JFrame implements MouseListener {
 
@@ -27,17 +27,24 @@ public class MainWindow extends JFrame implements MouseListener {
 	private JButton resetButton;
 	private JButton calculateButton;
 	private JTabbedPane tabbedPane;
-	private BasicResults basicResultsTab;
+	private BasicResultsPanel basicResultsTab;
 	private OperationInterfaces operationInterfacesTab;
-	private ComplexTypes complexTypesTab;
-	private OperationCombinations operationCombinationsTab;
+	private ComplexTypesPanel complexTypesTab;
+	private OperationCombinationsPanel operationCombinationsTab;
 	private List<ResultsBrowser> resultBrowser;
 
+	/**
+	 * GUIs Main Window constructor
+	 * @param appName application name shown in Window's title bar
+	 */
 	public MainWindow(final String appName) {
 		super(appName);
 		createGUI();
 	}
 
+	/**
+	 * Creates GUI from initialized components
+	 */
 	private void createGUI() {
 		init();
 
@@ -58,6 +65,9 @@ public class MainWindow extends JFrame implements MouseListener {
 		pack();
 	}
 
+	/**
+	 * Initialize GUI components
+	 */
 	private void init() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
@@ -75,7 +85,7 @@ public class MainWindow extends JFrame implements MouseListener {
 
 		tabbedPane = new JTabbedPane();
 
-		basicResultsTab = new BasicResults();
+		basicResultsTab = new BasicResultsPanel();
 		resultBrowser.add(basicResultsTab);
 		tabbedPane.addTab("Basic Results", basicResultsTab);
 
@@ -83,21 +93,25 @@ public class MainWindow extends JFrame implements MouseListener {
 		resultBrowser.add(operationInterfacesTab);
 		tabbedPane.addTab("Operation Interfaces", operationInterfacesTab);
 
-		complexTypesTab = new ComplexTypes();
+		complexTypesTab = new ComplexTypesPanel();
 		resultBrowser.add(complexTypesTab);
 		tabbedPane.addTab("Complex Types", complexTypesTab);
 
-		operationCombinationsTab = new OperationCombinations();
+		operationCombinationsTab = new OperationCombinationsPanel();
 		resultBrowser.add(operationCombinationsTab);
 		tabbedPane.addTab("Operation Combinations", operationCombinationsTab);
 
 		wsdlUriField = new InputFieldWithFileChooser(this);
 	}
 
-
+	/**
+	 * Mouse clicked event handler.
+	 * @param mouseEvent event to handle
+	 */
 	public void mouseClicked(MouseEvent mouseEvent) {
 		Object source = mouseEvent.getSource();
 		if (source == addButton) {
+			/* add Button event handler */
 			String URI = wsdlUriField.getText();
 			URI = URI.trim();
 			if (URI.length() > 0) {
@@ -105,28 +119,41 @@ public class MainWindow extends JFrame implements MouseListener {
 			}
 			wsdlUriField.setText(null);
 		} else if (source == resetButton) {
+			/* reset button event handler */
 			loadedDefinitions.reset();
 			wsdlUriField.setText(null);
+			/* clear each result browser tab */
 			for (ResultsBrowser result : resultBrowser) {
 				result.reset();
 			}
 		} else if (source == calculateButton) {
+			/* calculate button event handler */
 			Object[] definitions = loadedDefinitions.getLoadedDefinitions();
 			if (definitions.length > 0) {
+				/* disable calculate button during calculation */
 				calculateButton.setEnabled(false);
+				/* set busy cursor */
+				getRootPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+				/* start metric calculation */
 				ResultCalculation calculator = new ResultCalculation(this, definitions);
 				calculator.execute();
 			}
 		}
 	}
 
+	/**
+	 * Set calculation result. Called from ResultCalculater after computation finished
+	 * @param metric result
+	 */
 	public void setResult(DCIMetric metric) {
+		/* enable calculate button */
 		calculateButton.setEnabled(true);
-		if (metric.getDataCouplingIndex() >= 0.0) {
-			for (ResultsBrowser result : resultBrowser) {
-				result.setResult(metric);
-			}
+		/* display result on each result browser tab */
+		for (ResultsBrowser result : resultBrowser) {
+			result.setResult(metric);
 		}
+		/* set normal cursor */
+		getRootPane().setCursor(Cursor.getDefaultCursor());
 	}
 
 	public void mousePressed(MouseEvent mouseEvent) {}

@@ -7,19 +7,40 @@ import java.io.File;
 import java.util.concurrent.ExecutionException;
 
 /**
- * Created by IntelliJ IDEA.
- * User: djaara
- * Date: 2011-09-11
- * Time: 14:29
+ * ResultCalculation calculate DCI Metric result in background thread without blocking GUI.
+ * @author <a href="mailto:djaara83@gmail.com">Jaroslav Barton</a>
+ * Date: 2011-09-11 14:29
  */
 class ResultCalculation extends SwingWorker<DCIMetric, Void> {
 
 	private final Object[] wsdls;
 	private final MainWindow window;
 
+	/**
+	 * ResultCalculation constructor.
+	 * @param window result receiver object
+	 * @param wsdls array of wsdl for metric calculation
+	 */
 	public ResultCalculation(MainWindow window, Object[] wsdls) {
 		this.window = window;
 		this.wsdls = wsdls;
+	}
+
+	/**
+	 * Loads wsdl for metric calculation. Shows Error message on exception.
+	 * @param metric Metric calculator which loads wsdl
+	 * @param URI wsdl URI
+	 */
+	private void loadWsdl(DCIMetric metric, String URI) {
+		try {
+			metric.loadWsdl(URI);
+		} catch (Exception ex) {
+			Throwable cause = ex;
+			while (cause.getCause() != null) {
+				cause = cause.getCause();
+			}
+			JOptionPane.showMessageDialog(window, cause.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+		}
 	}
 
 	@Override
@@ -37,14 +58,6 @@ class ResultCalculation extends SwingWorker<DCIMetric, Void> {
 		}
 		metric.computeMetric();
 		return metric;
-	}
-
-	private void loadWsdl(DCIMetric metric, String URI) {
-		try {
-			metric.loadWsdl(URI);
-		} catch (Exception ignored) {
-			JOptionPane.showMessageDialog(window, ignored.getMessage(), "Warning", JOptionPane.ERROR_MESSAGE);
-		}
 	}
 
 	@Override
