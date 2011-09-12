@@ -1,6 +1,5 @@
 package cz.vse.metric;
 
-import cz.vse.metric.dci.DCIMetric;
 import cz.vse.metric.gui.MainWindow;
 
 import javax.imageio.ImageIO;
@@ -18,10 +17,11 @@ import java.net.URL;
 public class GUIApplication implements UserInterface {
 
 	private final MainWindow mainWindow;
+	private static final String APP_NAME = "DCI Metric GUI";
 
 	public GUIApplication() {
 		if (System.getProperty("os.name").startsWith("Mac OS X")) {
-			System.setProperty("com.apple.mrj.application.apple.menu.about.name", "DCI Metric");
+			System.setProperty("com.apple.mrj.application.apple.menu.about.name", APP_NAME);
 
 			URL iconURL = GUIApplication.class.getResource("gui/ico.png");
 
@@ -42,7 +42,7 @@ public class GUIApplication implements UserInterface {
 			} catch (UnsupportedLookAndFeelException ignored) {
 			}
 		}
-		mainWindow = new MainWindow();
+		mainWindow = new MainWindow(APP_NAME);
 	}
 
 	public void start() {

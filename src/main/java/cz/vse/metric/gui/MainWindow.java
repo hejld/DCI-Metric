@@ -5,7 +5,9 @@ import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
 import cz.vse.metric.dci.DCIMetric;
 
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JTabbedPane;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -31,8 +33,8 @@ public class MainWindow extends JFrame implements MouseListener {
 	private OperationCombinations operationCombinationsTab;
 	private List<ResultsBrowser> resultBrowser;
 
-	public MainWindow() {
-		super("DCI Metric Gui");
+	public MainWindow(final String appName) {
+		super(appName);
 		createGUI();
 	}
 
@@ -120,9 +122,11 @@ public class MainWindow extends JFrame implements MouseListener {
 
 	public void setResult(DCIMetric metric) {
 		calculateButton.setEnabled(true);
-		for (ResultsBrowser result : resultBrowser) {
+		if (metric.getDataCouplingIndex() >= 0.0) {
+			for (ResultsBrowser result : resultBrowser) {
 				result.setResult(metric);
 			}
+		}
 	}
 
 	public void mousePressed(MouseEvent mouseEvent) {}
