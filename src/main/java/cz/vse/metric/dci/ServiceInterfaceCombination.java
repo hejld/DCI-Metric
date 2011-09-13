@@ -22,7 +22,7 @@ public class ServiceInterfaceCombination {
         init();
     }
 
-    public void init() {
+    private void init() {
         // We compare each complex type from interface A to each complex type from interface B
         for (QName complexTypeA : interfaceA.getNonAnonymousComplexTypes()) {
             for (QName complexTypeB : interfaceB.getNonAnonymousComplexTypes()) {
