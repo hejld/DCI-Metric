@@ -5,14 +5,12 @@ import cz.vse.metric.dci.ServiceInterface;
 import cz.vse.metric.dci.ServiceInterfaceCombination;
 
 import javax.xml.namespace.QName;
-import java.io.File;
-import java.net.SocketOptions;
 import java.util.Scanner;
 
 /**
  * @author <a href="mailto:daniel.hejl@hotmail.com">Daniel Hejl</a>
  */
-public class ConsoleApplication {
+public class ConsoleApplication implements UserInterface {
 
     DCIMetric dciMetric = new DCIMetric();
     Scanner in = new Scanner(System.in);

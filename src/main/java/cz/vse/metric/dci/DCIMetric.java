@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.CountDownLatch;
 
 /**
  * Class DCIMetric
@@ -81,7 +80,7 @@ public class DCIMetric {
      * Method for loading data from WSDL and XSD definitions
      *
      * Can be used multiple times until all the WSDL definitions are loaded
-     * @param wsdlUri
+     * @param wsdlUri wdsl URI
      * @throws Exception
      */
     public void loadWsdl(String wsdlUri) throws Exception {

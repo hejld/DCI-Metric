@@ -8,8 +8,14 @@ package cz.vse.metric;
  */
 public class Application {
 
-    public static void main(String... args) {
-        ConsoleApplication app = new ConsoleApplication();
-        app.start();
-    }
+    public static void main(String[] args) {
+		UserInterface app;
+		if (args.length == 0 || !"-cli".equals(args[0])) {
+			app = new GUIApplication();
+		} else {
+			app = new ConsoleApplication();
+		}
+
+		app.start();
+	}
 }
