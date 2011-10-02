@@ -98,8 +98,8 @@ public class ConsoleApplication implements UserInterface {
             System.out.println("");
             System.out.println("Summary for operation: " + si.getServiceQName());
             System.out.println("This operation uses " + si.getNumberOfComplexTypes() + " distinct complex types.");
-            System.out.println("They are " + si.getNonAnonymousComplexTypes());
-            System.out.println(si.getSharedComplexTypeMap().size() + " of them are shared.");
+            System.out.println("Out of them, following are non-anonymous" + si.getNonAnonymousComplexTypes());
+            System.out.println("Out of them, following are shared:" + si.getSharedComplexTypeMap());
         }
     }
 

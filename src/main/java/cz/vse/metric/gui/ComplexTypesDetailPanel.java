@@ -39,7 +39,7 @@ class ComplexTypesDetailPanel extends JPanel {
 		CellConstraints cc = new CellConstraints();
 		CellConstraints lcc = new CellConstraints();
 		pb.addLabel("<html><b>Complex type</b></html>", cc.xy(1, 1), complexType, lcc.xy(3, 1));
-		pb.addLabel("Number of distinct complex types", cc.xy(1, 3), numberOfUsage, lcc.xy(3, 3));
+		pb.addLabel("Number of usages:", cc.xy(1, 3), numberOfUsage, lcc.xy(3, 3));
 		pb.addSeparator("", cc.xyw(1, 5, 3));
 	}
 

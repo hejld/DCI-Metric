@@ -46,7 +46,7 @@ public class OperationInterfaces extends JPanel implements ResultsBrowser {
 		SIPanels.removeAll();
 		/* create new panel for each result */
 		for (ServiceInterface si : result.getServiceInterfaces()) {
-			SIPanels.add(new ServiceInterfacePanel(si));
+			SIPanels.add(new OperationInterfacesPanel(si));
 		}
 		/* scroll sp to top*/
 		SwingUtilities.invokeLater(new Runnable() {

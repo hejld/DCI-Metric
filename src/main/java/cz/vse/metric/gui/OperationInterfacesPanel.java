@@ -16,17 +16,17 @@ import java.util.List;
  * Date: 2011-09-11
  * Time: 16:06
  */
-class ServiceInterfacePanel extends JPanel {
+class OperationInterfacesPanel extends JPanel {
 
 	private JLabel serviceName;
 	private JLabel numberOfComplexTypes;
 	private JTextArea nonAnonymousComplexTypes;
 	private JLabel numOfShared;
-	private static final DecimalFormat iformatter = new DecimalFormat("#,###");
+	private static final DecimalFormat iformatter = new DecimalFormat("#,######");
 	private final ServiceInterface si;
 
 
-	public ServiceInterfacePanel(ServiceInterface si) {
+	public OperationInterfacesPanel(ServiceInterface si) {
 		this.si = si;
 		init();
 
@@ -39,8 +39,8 @@ class ServiceInterfacePanel extends JPanel {
 		CellConstraints lcc = new CellConstraints();
 		pb.addLabel("<html><b>Service name</b></html>", cc.xy(1, 1), serviceName, lcc.xy(3, 1));
 		pb.addLabel("Number of distinct complex types", cc.xy(1, 3), numberOfComplexTypes, lcc.xy(3, 3));
-		pb.addLabel("They are", cc.xy(1, 5), nonAnonymousComplexTypes, lcc.xy(3, 5, CellConstraints.FILL, CellConstraints.FILL));
-		pb.addLabel("Shared", cc.xy(1, 7), numOfShared, lcc.xy(3, 7));
+		pb.addLabel("Non-anonymous", cc.xy(1, 5), nonAnonymousComplexTypes, lcc.xy(3, 5, CellConstraints.FILL, CellConstraints.FILL));
+		pb.addLabel("Out of them shared", cc.xy(1, 7), numOfShared, lcc.xy(3, 7));
 		pb.addSeparator("", cc.xyw(1, 9, 3));
 	}
 

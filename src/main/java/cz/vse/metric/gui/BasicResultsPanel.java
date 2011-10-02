@@ -63,7 +63,7 @@ public class BasicResultsPanel extends JPanel implements ResultsBrowser {
 	 * @param result result
 	 */
 	public void setResult(final DCIMetric result) {
-		DecimalFormat fformatter = new DecimalFormat("#,###.##");
+		DecimalFormat fformatter = new DecimalFormat("#,###.#####");
 		DecimalFormat iformatter = new DecimalFormat("#,###");
 
 		/* set DCI only when is not NaN */
