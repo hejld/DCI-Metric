@@ -1,19 +1,88 @@
-Tool for measuring DCI metric
+Tool for measuring DCI metric help
 
+=============================
 How to use it?
+=============================
+1) You can start the application by double clicking on the application file.
+    
+Use correct one for your system.
+DCIMetric-exe.jar represents the version for Mac OS
+DCIMetric.exe represents the version for Windows
 
-Run the application from command line via standard java command:
-java -jar DCIMetric-exe.jar
+2) After starting the application, start with choosing the WSDL file you 
+   want to measure.
 
-First, you will be asked to provide a URI to WSDL definition you want to analyze. This file can be located either on your local computer, or on the internet.
+For this, "WSDL URL/File" labeled input field is used.
 
-For local WSDL file, use URI in following form (you can use both relative and absolute links):
+For WSDL file that is located on your file system you can click on the blue 
+folder icon to start file browser/finder for locating the file using GUI 
+interface. For WSDL file that is located on the web, insert URL pointing
+to required WSDL file.
+
+Click in "Add button" to submit using the file for calculation. You can repeat
+this step as many times as you want.
+
+3) Calculate the metric
+
+Use the "Calculate metric!" button to calculate the metric using all the loaded
+WSDL files.
+
+4) Analyze the results
+
+=============================
+Results 
+=============================
+First, basic result data are shown. You can see other view by clicking on
+the tabs.
+
+Basic results tab:
+DCI - the value of data coupling index
+NDCI - the value of normalized data coupling index
+Total number of service operations - number of service operations used for 
+calculation.
+Total number of combination - the "r" value from the DCI formula.
+The average number of complex types per operation - including anonymous 
+complex types.
+Number of complex types that were reused - number of non-anonymous complex 
+types that were used in more than one interface .
+
+Operation interfaces tab:
+This tab contains information about every service interface
+Number of distinct complex types - includes anonymous complex types
+Non-anonymous - a list of non anonymous complex types used in the interface
+Out of them shared - number of shared non anonymous complex types
+
+Complex types tab:
+Contains names of all non anonymous complex types used by the operation
+interfaces with the number of usages.
+
+Operation combinations:
+Number and list of shared non anonymous complex types for each operation 
+interface.
+
+=============================
+Old command line interface
+=============================
+You can still use the old command line interface.
+
+Run the application from command line via standard java command with "-cli" 
+argument:
+
+java -jar DCIMetric-exe.jar -cli
+
+First, you will be asked to provide a URI to WSDL definition you want to analyze. 
+This file can be located either on your local computer, or on the internet.
+
+For local WSDL file, use URI in following form (you can use both relative and 
+absolute links):
 file:path/to/my/local/file.wsdl
 
 For remote WSDL file, use URI in following form:
 http://www.somedomain.com/file.wsdl
 
-After loading the WSDL, you will be asked for inserting another URI to load next WSDL. If you do not want to load any other WSDL, you can proceed to the calculation by inserting blank line.
+After loading the WSDL, you will be asked for inserting another URI to load next 
+WSDL. If you do not want to load any other WSDL, you can proceed to the calculation 
+by inserting blank line.
 
 Next, the DCI metric is calculated and following values are provided:
 
@@ -29,7 +98,8 @@ Total number of combinations (r):              xx
 Average number of complex types per operation: xx
 Number of complex types that were reused:      xx
 
-For more detailed analysis, you can use additional options as described in program output. You can press q and enter to exit the program.
+For more detailed analysis, you can use additional options as described in program 
+output. You can press q and enter to exit the program.
 
 You can press 1 and enter for detailed analysis of operation interfaces.
 You can press 2 and enter for detailed analysis of complex types.
